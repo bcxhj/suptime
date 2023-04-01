@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      .man{
+        color: coral;
+      }
+      .target{
+        width: 200px;
+        height: 200px;
+        border: 1px solid #bf5dce;
+        font-size: 30px;
+        text-align: center;
+        line-height: 200px;
+      }
+      div{
+        width: 200px;
+        height: 200px;
+        background: cadetblue;
+        margin-bottom: 10px;
+      }
+      button{
+        margin-left: 10px;
+      }
+      .change-border{
+        border-radius: 50%;
+      }
+    </style>
+</head>
+<body>
+  <button onclick="fo1()">根据类名获取</button>
+  <button onclick="fo2()">根据类获取</button>
+  <button onclick="fo3()">动态绑定事件程序</button>
+  <button onclick="fo4()">单击按钮改变颜色</button>
+  <button onclick="fo5()">f5</button>
+  <button onclick="fo6()">改变形状</button>
+  <div>
+    <button class="btnChange">按钮1</button>
+    <button class="btnChange">按钮2</button>
+    <button class="btnChange">按钮3</button>
+    <button class="btnChange">按钮4</button>
+    <button class="btnChange">按钮5</button>
+  </div>
+  <div>
+    <ul>
+      <li class="man">小老六</li>
+      <li class="man">小哥</li>
+      <li class="woman">小翔</li>
+      <li class="woman">小英</li>
+    </ul>
+  </div>
+  <div class="box">hello!</div>
+<p>1</p>
+
+  <div class="change"></div>
+  <button class="btn">变成圆形</button>
+  <button class="btn">变回方形</button>
+  <input id="msg" type="text" size="10">
+  <button id="btnSearch" onclick="fo9()">搜索</button>
+</body>
+<script>
+  function fo9(){
+    var msg=document.getElementById("msg");
+    var search=document.getElementById("btnSearch");
+    msg.value="已单击";
+    search.disabled=true;
+  }
+  function fo6(){
+    var box=document.getElementsByClassName('change');
+    var btns=document.getElementsByClassName('btn');
+    btns[0].onclick=function () {
+      box[0].classList.add('change-border');
+    }
+    btns[1].classList=function (){
+      box[0].classList.remove('change-border');
+    }
+  }
+  function fo5(){
+    var box=document.querySelector('.box');
+    box.className='target';
+  }
+  function fo4(){
+    var btn=document.querySelectorAll(".btnChange");
+    for (let i = 0; i < btn.length; i++) {
+      btn[i].onclick=changColor;
+    }
+    function changColor(){
+      for (let i = 0; i < btn.length; i++) {
+        if (btn[i]===this){
+          this.style.backgroundColor='red';
+        }else{
+          btn[i].style.backgroundColor='';
+        }
+      }
+    }
+  }
+  function fo3(){
+    var item=document.querySelector(".man")
+    item.onclick=function (){
+      alert("hello");
+    }
+  }
+  function fo2(){
+    var woman=document.querySelectorAll(".woman");
+    console.log(woman)
+    var msg=""
+    for (let item of woman){
+      msg+=item.innerHTML+" "
+    }
+    console.log(msg)
+  }
+  function fo1(){
+    const mans = document.getElementsByClassName("man");
+    console.log(mans);
+    let msg = "";
+    for (let item of mans) {
+      msg+=item.innerHTML+" "
+    }
+    console.log(msg)
+  }
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="dom">点击获取年份</p>
+<button onclick="fo1()">测试1</button>
+<button onclick="fo2()">创造日期对象</button>
+<button onclick="fo3()">获取与设置日期对象</button>
+<button onclick="fo4()">计算倒计时</button>
+<input id="dateTarget" size="20" value="2025-06-30">
+<button onclick="fo5()">数组的操作</button>
+<button onclick="fo6()">数组的逆序与排序</button>
+<button onclick="fo7()">统计分数</button>
+账号:<input id="name">
+<button onclick="fo8()">检测</button>
+<button onclick="fo9()">提交</button>
+<input type="checkbox" name="hobby" value="阅读">阅读
+<input type="checkbox" name="hobby" value="旅游">旅游
+<input type="checkbox" name="hobby" value="音乐">音乐
+</body>
+<script>
+    function fo9(){
+
+    }
+    function fo8(){
+        var name=document.getElementById("name").value
+        if (name.length<3||name.length>10){
+            alert("name应为3到10个字符")
+        }else if (name.toLocaleLowerCase().indexOf("admin")!==-1){
+            alert("用户名中不可含有敏感词admin!")
+        }else{
+            alert("恭喜您，该用户名字可以使用!")
+        }
+    }
+    function fo7(){
+        function getNumber(count){
+            var arr=[];
+            for (let i = 0; i < count; i++) {
+                arr.push(Math.random()*60+40);
+            }
+            return arr;
+        }
+        var scores=getNumber(10);
+        var cnt=0;
+        console.log(scores)
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i]>=60){
+                cnt++;
+            }
+        }
+        console.log("及格的人数为"+cnt+"人");
+    }
+    function fo6(){
+        var arr=[1,5,3,6,2,7,4]
+        console.log(arr)
+        arr.sort((a,b)=>a-b)//升序函数实现
+        console.log(arr)
+        arr.sort((a,b)=>b-a)//降序函数实现
+        console.log(arr)
+    }
+    function fo5(){
+        var arr=['星期一','星期二','星期三','星期四','星期五'];
+        console.log(arr.push('星期六'),arr);
+        console.log(arr.unshift('星期日'),arr)
+    }
+    function fo1(){
+        var d=new Date();
+        var x=document.getElementById("dom")
+        x.innerHTML=d.getFullYear();
+    }
+    function fo2(){
+        var date01=new Date();
+        console.log(date01);
+        var date02=new Date(2023,2,24,9,0,0);
+        console.log(date01)
+        var date03=new Date("2023-03-24-09:00:00")
+        console.log(date03)
+    }
+    function fo3(){
+        var date01=new Date();
+        date01.setMonth(date01.getMonth()+1);
+        console.log(date01.getFullYear()+"-"+(date01.getMonth()))
+    }
+    function fo4(){
+        var dateTarget=document.getElementById("dateTarget").value;
+        let now = new Date();
+        var target=new Date(dateTarget);
+        var times=(target-now)/1000;
+        var days=times/(60*60*24);
+        var hours=times/(60*60)%24;
+        console.log(days)
+        console.log(hours)
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <button class="byt">按钮1</button>
+  <button class="byt">按钮2</button>
+  <button class="byt">按钮3</button>
+  <button class="byt">按钮4</button>
+</body>
+<script>
+  var bts=document.getElementsByClassName('byt');
+  for (let i = 0; i < bts.length; i++) {
+    bts[i].onclick=changeColor;
+  }
+  function changeColor(){
+      for (var i = 0; i < bts.length; i++) {
+          if (bts[i]===this){
+              this.style.backgroundColor='pink';
+          }else{
+              bts[i].style.backgroundColor='';
+          }
+      }
+  }
+</script>
+</html>
